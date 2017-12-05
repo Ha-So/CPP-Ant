@@ -1,4 +1,4 @@
-# c-Ant
+# CPP-Ant
 C++ Turning Machine Project
 
 
@@ -11,9 +11,13 @@ Starting on a white (or black) tiled board an "ant" placed on it will move accor
 Based on these rules what looks to be a random pattern of squares eventually emerges into a repeatable "highway" out of the chaos.
 
 How to operate:
+1. Enter in the command line git clone https://github.com/hso4/CPP-Ant.git
+2. Opening the project on a Linux console, the makefile will designate the executable as "runAnt"
+3. Entering 1 will allow a customizable board. 2 will initiate a preset board for 12,000 steps. The pattern will be visible near the end, so allow the program to finish running.
+4. If customizing the board, a larger board with more steps will make the emergent behavior easier to see
+5. End the program via the main menu or ctrl+C to end it while the board is printing.
 
-Opening the project on a Linux console, the makefile will designate the executable as "runAnt"
-Entering 1 will allow a customizable board. 2 will initiate a preset board for 12,000 steps. The pattern will be visible near the end, so allow the program to finish running.
+# Possibly your final view(depending on settings):
+![Screenshot](antEnd.PNG)
 
-If customizing the board, a larger board with more steps will make the emergent behavior easier to see
-End the program via the main menu or ctrl+C to end it while the board is printing.
+
