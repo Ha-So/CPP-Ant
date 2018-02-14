@@ -27,6 +27,7 @@ using namespace std;
 
 int menu(char mainType)
 {
+	clearScreen();
 	int aChoice;	//This variable is re-used to hold various user integer input
 	 
 	/*For all cases below, user input is passed to the inputVal function by reference to validate 
@@ -137,4 +138,15 @@ void displaySettings(int sRow, int sCol, int uRow, int uCol, int tSteps, char sD
             cout << "Total steps: " <<tSteps << endl;
             cout << "Initial Direction: " << sDirection << endl << endl;
 
+}
+/*********************************************************************
+**                    		  clearScreen()
+** Clears the terminal and places the cursor at the bottom of the screen
+*********************************************************************/
+
+void clearScreen()
+{
+	system("clear");
+	string newline(100, '\n');
+	cout << newline << endl;
 }
