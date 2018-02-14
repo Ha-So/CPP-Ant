@@ -15,5 +15,6 @@
 int menu(char type);
 char charMenu(char type);
 void displaySettings(int sRow, int sCol, int uRow, int uCol, int tSteps, char sDirection);
+void clearScreen(); 
 
 #endif
