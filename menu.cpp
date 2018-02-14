@@ -52,14 +52,14 @@ int menu(char mainType)
 	  case 'B':
 
             cout <<"Please enter the max number of rows for the matrix." << endl;
-            cout << "We suggest no higher than 100." << endl << "Rows: "; 
+            cout << "We suggest no higher than 100. (Recommended: 100)" << endl << "Rows: "; 
             inputVal('B', &aChoice);
             return aChoice;
 	  break;
 	  // Case C asks for user input to determine the max columns the array will have
 	  case 'C':        
 	  		cout << "Please enter the max number of columns for the matrix." << endl;
-            cout << "We suggest no higher than 100." << endl << "Columns: "; 
+            cout << "We suggest no higher than 100. (Recommended: 100)" << endl << "Columns: "; 
             inputVal('C', &aChoice);
             return aChoice;
 
@@ -84,7 +84,7 @@ int menu(char mainType)
 	  // Case F asks for user input to determine the  total steps the Ant will move
 	  case 'F':
 
-	  		cout << "Please enter the total number of steps the ant should take." << endl;
+	  		cout << "Please enter the total number of steps the ant should take. (Larger is better)" << endl;
             cout << "Total steps: ";
             inputVal('F', &aChoice);
             return aChoice;
