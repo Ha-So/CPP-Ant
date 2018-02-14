@@ -12,6 +12,7 @@
 
 #include <iostream>
 #include <string>
+#include <sstream>
 #include "inputVal.hpp"
 
 
@@ -35,7 +36,9 @@ bool inputVal(char type, int *input)
 {
    
   
-   bool validIn;        //Hold the boolean return value. True if valid, false otherwise.
+   bool validIn = false;        //Hold the boolean return value. True if valid, false otherwise.
+   string strInput = " ";     //Convert user input to string
+   int temp;
    static int maxRow;   //Holds the user entered total rows for later use to verify the starting row
    static int maxCol;   //Holds the user entered total columns for later use to verify the starting column
    const int ZERO = 0;
@@ -44,40 +47,41 @@ bool inputVal(char type, int *input)
    const int THREE = 3;
    const int ARRLIMIT = 100;    //ARRLIMIT holds the max rows and columns the user can enter
 
+   do
+   {
+      getline(cin, strInput);
+      stringstream convert(strInput);
+      if (!(convert >> temp))
+      {
+        temp = -1;
+      }
+  
+   switch(type)
+   {
+   
 
-        do
-            {
-                validIn = false;
-                cin >> *input;
-                
-                // Initial check of input data type. 
-                if (cin.fail())
-                    {
-                        cin.clear();
-                         cin.ignore();
-                        
-                        cout << "Invalid input, please try again: " << endl;
-                    }
-                // Type A only allows 1, 2 or 3 for entry for menu navigation
-                else if (type == 'A')
-                    {
-                        if (*input == ONE || *input == TWO || *input == THREE)
+
+      // Type A only allows 1, 2 or 3 for entry for menu navigation
+      case 'A':
+       if (temp == ONE || temp == TWO || temp == THREE)
                         {
+                            *input =  temp;
                             validIn = true; 
                              return validIn;
                         }
                         else
                         {
+                            *input =  temp;
                             cout << "Invalid input, please try 1 or 2 or 3: " << endl;
                             validIn = false;
                         }
-                    
-                    }
-                 // Type B only allows a total row entry between 1 and 100
-                 else if (type == 'B') 
-                    {  
-                        if (*input >= ONE && *input <= ARRLIMIT)
+
+      break;
+
+      case 'B':
+       if (temp >= ONE && temp <= ARRLIMIT)
                         {
+                          *input =  temp;
                             validIn = true; 
                             maxRow = *input;
                             return validIn;
@@ -85,79 +89,87 @@ bool inputVal(char type, int *input)
                         
                         else
                         {
+                            *input =  temp;
                             cout << "Invalid input, please try from 1 to 100: " << endl;
                             validIn = false;
                         }
-                    
-                    }
-                // Type C only allows a total column entry between 1 and 100
-                else if (type == 'C')
-                    {
-                        if (*input >= ONE && *input <= ARRLIMIT)
-                             {
-                                validIn = true; 
-                                maxCol = *input;
-                                return validIn;
-                             }
-                        else
-                             {
-                                cout << "Invalid input, please try from 1 to 100: " << endl;
-                                validIn = false;
-                             }
 
-                    }
-                // Type D only allows a total row entry between 1 and the maxRow variable set above
-                else if (type == 'D')
-                    {
-                        if ((*input >= ZERO) && (*input < maxRow))
-                                {
+      break;
+      case 'C':
+       if (temp >= ONE && temp <= ARRLIMIT)
+                        {
+                          *input =  temp;
+                            validIn = true; 
+                            maxCol = *input;
+                            return validIn;
+                        }
+                        
+                        else
+                        {
+                            *input =  temp;
+                            cout << "Invalid input, please try from 1 to 100: " << endl;
+                            validIn = false;
+                        }
 
-                                    validIn = true; 
-                                    return validIn;
-                                }
-                        else
-                                {
-                                    cout << "Invalid input, please try from 0 to " << maxRow - 1 << ":"<< endl;
-                                    validIn = false;
-                                } 
+      break;
+       case 'D':
+       if ((temp >= ZERO) && (temp < maxRow))
+                        {
+                          *input =  temp;
+                          validIn = true; 
+                          maxCol = *input;
+                          return validIn;
+                        }
                         
-                    }
-                // Type E only allows a total column entry between 1 and the maxCol variable set above
-                else if (type == 'E')
-                    {
-                        if ((*input >= ZERO) && (*input < maxCol))
-                                {
-                                    validIn = true; 
-                                    return validIn;
-                                }
                         else
-                                {
-                                    cout << "Invalid input, please try from 0 to " << maxCol - 1 << ":"<< endl;
-                                    validIn = false;
-                                } 
+                        {
+                            *input =  temp;
+                            cout << "Invalid input, please try from 0 to " << maxRow - 1 << ":"<< endl;
+                            validIn = false;
+                        } 
+
+      break;
+       case 'E':
+       if ((temp >= ZERO) && (temp < maxCol))
+                        {
+                          *input =  temp;
+                          validIn = true; 
+                          maxCol = *input;
+                          return validIn;
+                        }
                         
-                    }
-                //Type F verifies total ant steps, accepts any integer above 0
-                else if (type == 'F')
-                    {
-                        if ((*input >= ZERO))
-                                {
-                                    validIn = true; 
-                                    return validIn;
-                                }
                         else
-                                {
-                                    cout << "Invalid input, please a value 0 and above: " << endl;
-                                    validIn = false;
-                                } 
+                        {
+                            *input =  temp;
+                            cout << "Invalid input, please try from 0 to " << maxCol - 1 << ":"<< endl;
+                            validIn = false;
+                        } 
+
+      break;
+       case 'F':
+       if (temp > ZERO)
+                        {
+                           *input =  temp;
+                            validIn = true; 
+                            maxCol = *input;
+                            return validIn;
+                        }
                         
-                    }
-                    
-                    
-                    
-                } while (validIn != true);
-  // Loop ends here if no type is matched, indicating verification has failed
-  return validIn = false;
+                        else
+                        {
+                            *input =  temp;
+                            cout << "Invalid input, please a value 0 and above: " << endl;
+                            validIn = false;
+                        }
+
+      break;
+
+   }
+   cin.sync();
+ }while(validIn == false);
+
+   return validIn;
+
 }
    
 
@@ -174,42 +186,46 @@ bool inputVal(char type, int *input)
 *********************************************************************/
 bool inputVal(char type, char *charInput)
 {
-    bool validIn;
-    do
-            {
-                validIn = false;
-                cin >> *charInput;
-                
+   bool validIn = false;        //Hold the boolean return value. True if valid, false otherwise.
+   string strInput = " ";     //Convert user input to string
+   char temp;
 
-                if (cin.fail())
-                    {
-                        cin.clear();
-                        cin.ignore();
-                        
-                        cout << "Invalid input, please try again: " << endl;
-                    }
-                // Type A verifies the Ant direction for North South, East or West
-                 else if (type == 'A')
+   do
+   {
+      getline(cin, strInput);
+      if (!(temp = strInput[0]))
+      {
+        temp = 'Z';
+      }
+  
+   switch(type)
+   {
+   
 
-                    {
-                        //A lowercase entry is stored as an uppercase for comparison
-                        *charInput = toupper(*charInput);
 
-                        if (*charInput == 'N' || *charInput =='S' || *charInput == 'E' || *charInput == 'W')
+      // Type A only allows 1, 2 or 3 for entry for menu navigation
+      case 'A':
+        temp = toupper(temp);
+        if (temp == 'N' || temp =='S' || temp == 'E' || temp == 'W')
                         {
-                            
+                            *charInput =  temp;
                             validIn = true; 
                              return validIn;
                         }
                         else
                         {
-                            cout << "Invalid input, please try N, S, E, or W: " << endl;
+                            *charInput =  temp;
+                              cout << "Invalid input, please try N, S, E, or W: " << endl;
                             validIn = false;
                         }
 
-                    }
-            } while (validIn != true);
-  return validIn = false;
+      break;
+
+   }
+   cin.sync();
+ }while(validIn == false);
+
+   return validIn;
 
 }
  
