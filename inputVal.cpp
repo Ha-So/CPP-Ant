@@ -37,10 +37,10 @@ bool inputVal(char type, int *input)
    
   
    bool validIn = false;        //Hold the boolean return value. True if valid, false otherwise.
-   string strInput = " ";     //Convert user input to string
+   string strInput = " ";       //Convert user input to string
    int temp;
-   static int maxRow;   //Holds the user entered total rows for later use to verify the starting row
-   static int maxCol;   //Holds the user entered total columns for later use to verify the starting column
+   static int maxRow;           //Holds the user entered total rows for later use to verify the starting row
+   static int maxCol;           //Holds the user entered total columns for later use to verify the starting column
    const int ZERO = 0;
    const int ONE = 1;
    const int TWO = 2;
@@ -117,7 +117,7 @@ bool inputVal(char type, int *input)
                         {
                           *input =  temp;
                           validIn = true; 
-                          maxCol = *input;
+                        
                           return validIn;
                         }
                         
@@ -134,7 +134,7 @@ bool inputVal(char type, int *input)
                         {
                           *input =  temp;
                           validIn = true; 
-                          maxCol = *input;
+                          
                           return validIn;
                         }
                         
@@ -151,7 +151,7 @@ bool inputVal(char type, int *input)
                         {
                            *input =  temp;
                             validIn = true; 
-                            maxCol = *input;
+                          
                             return validIn;
                         }
                         
@@ -203,7 +203,7 @@ bool inputVal(char type, char *charInput)
    
 
 
-      // Type A only allows 1, 2 or 3 for entry for menu navigation
+      // Type A only allows N, S, W, E
       case 'A':
         temp = toupper(temp);
         if (temp == 'N' || temp =='S' || temp == 'E' || temp == 'W')
